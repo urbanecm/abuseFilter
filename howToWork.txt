@@ -1,0 +1,12 @@
+== Plain text ==
+
+* editace ukončena: v logu jsou jen varování, v historii článku není v blízké době od času varování uložena editace od daného uživatele
+* editace uložena i se spuštěným filtrem: v logu jsou varování a po chvíli i značky, v historii článku je v blízké době od času varování uložena editace od daného uživatele
+* editace upravena tak, že se filtr nespustil: v logu jsou varování, v historii článku je v blízké době od času varování uložena editace od daného uživatele
+
+== Řečí programátorů ==
+Použité tabulky: abuse_filter_log a revision
+
+* editace ukončena: v tabulce abuse_filter_log je pole afl_actions pouze warn, v tabulce revision není záznam o editaci
+* editace uložena i se spuštěným filtrem: v tabulce abuse_filter_log je pole afl_actions chronologicky napřed warn, po chvíli tag
+* editace upravena: v tabulce abuse_filter_log je pole afl_actions pouze warn a v blízké době není tag, v tabulce revision je záznam o provedené editaci v článku
