@@ -1,0 +1,34 @@
++------------------+---------------------+------+-----+---------+-------+
+| Field            | Type                | Null | Key | Default | Extra |
++------------------+---------------------+------+-----+---------+-------+
+| afl_id           | bigint(20) unsigned | NO   |     | 0       |       |
+| afl_filter       | varbinary(64)       | NO   |     |         |       |
+| afl_user         | bigint(20) unsigned | NO   |     | 0       |       |
+| afl_user_text    | varbinary(255)      | NO   |     |         |       |
+| afl_ip           | binary(0)           | YES  |     | NULL    |       |
+| afl_action       | varbinary(255)      | NO   |     |         |       |
+| afl_actions      | varbinary(255)      | NO   |     |         |       |
+| afl_var_dump     | blob                | NO   |     | NULL    |       |
+| afl_timestamp    | varbinary(14)       | NO   |     |         |       |
+| afl_namespace    | int(11)             | NO   |     | NULL    |       |
+| afl_title        | varbinary(255)      | NO   |     |         |       |
+| afl_wiki         | varbinary(64)       | YES  |     | NULL    |       |
+| afl_deleted      | tinyint(1)          | NO   |     | 0       |       |
+| afl_patrolled_by | int(10) unsigned    | NO   |     | 0       |       |
+| afl_rev_id       | int(10) unsigned    | YES  |     | NULL    |       |
+| afl_log_id       | int(10) unsigned    | YES  |     | NULL    |       |
++------------------+---------------------+------+-----+---------+-------+
+
+
+== Plain text ==
+
+* editace ukončena: v logu jsou jen varování, v historii článku není v blízké době od času varování uložena editace od daného uživatele
+* editace uložena i se spuštěným filtrem: v logu jsou varování a po chvíli i značky, v historii článku je v blízké době od času varování uložena editace od daného uživatele
+* editace upravena tak, že se filtr nespustil: v logu jsou varování, v historii článku je v blízké době od času varování uložena editace od daného uživatele
+
+== Řečí programátorů ==
+Použité tabulky: abuse_filter_log a revision
+
+* editace ukončena: v tabulce abuse_filter_log je pole afl_actions pouze warn, v tabulce revision není záznam o editaci
+* editace uložena i se spuštěným filtrem: v tabulce abuse_filter_log je pole afl_actions chronologicky napřed warn, po chvíli tag
+* editace upravena: v tabulce abuse_filter_log je pole afl_actions pouze warn a v blízké době není tag, v tabulce revision je záznam o provedené editaci v článku
