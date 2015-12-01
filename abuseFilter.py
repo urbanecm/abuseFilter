@@ -22,7 +22,7 @@ cur = conn.cursor()
 #Otevření transakce
 with cur:
 	#Nalezení ĺogu pro daný filtr
-	cur.execute('select afl_actions from abuse_filter_log where afl_filter="' + fnum + '"order by afl_timestamp asc')
+	cur.execute('select afl_actions from abuse_filter_log where afl_filter="' + str(fnum) + '"order by afl_timestamp asc')
 	data = cur.fetchall()
 
 
