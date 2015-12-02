@@ -41,5 +41,36 @@ for row in data:
 		prevs.append(row)
 	prev_article = row[10]
 
-import json
-print json.dumps(for_analyze)
+saved = 0
+ended = 0
+edited = 0
+together = 0
+
+for group in for_analyze:
+	if len(group) == 1:
+		if group[0][6] == "warn":
+			cur = conn.cursor()
+			with cur:
+				cur.execute('select * from revision where rev_page=(select page_id from page where page_title="' + group[0][10] + '" order by rev_timestamp asc')
+				data = cur.fetchall()
+			stamp = group[0][8]
+			rev_near = []
+			for rev in data:
+				if rev[6] < stamp
+					continue
+				elif rev[6] > stamp+15:
+					break
+				else:
+					rev_near.append(rev)
+			if len(rev_near) == 0:
+				ended += 1
+				together += 1
+			else:
+				edited += 1
+				together += 1
+		else:
+			saved += 1
+			together += 1
+	else:
+		saved += 1
+		together += 1
