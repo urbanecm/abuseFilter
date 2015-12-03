@@ -56,7 +56,7 @@ for group in for_analyze:
 			stamp = group[0][8]
 			rev_near = []
 			for rev in data:
-				if rev[6] < stamp
+				if rev[6] < stamp:
 					continue
 				elif rev[6] > stamp+15:
 					break
@@ -74,3 +74,8 @@ for group in for_analyze:
 	else:
 		saved += 1
 		together += 1
+
+print "Saved: " + str(saved)
+print "Ended: " + str(ended)
+print "Edited: " + str(edited)
+print "Together: " + str(together)
