@@ -23,9 +23,8 @@
         data.addColumn('string', 'Topping');
         data.addColumn('number', 'Slices');
         data.addRows([
-	<?
-	$cmd = "~/abuseFilter/analyze.py";
-	echo(shell_exec($cmd));
+	<?php
+	echo(shell_exec("/data/project/urbanecmbot/abuseFilter/analyze.py"));
 	?>
         ]);
 
