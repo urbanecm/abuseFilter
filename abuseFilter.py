@@ -102,4 +102,4 @@ result['saved'] = saved
 result['ended'] = ended
 result['edited'] = edited
 result['together'] = together
-print json
+print json.dumps(result)
