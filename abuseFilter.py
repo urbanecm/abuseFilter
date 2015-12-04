@@ -2,6 +2,8 @@
 #-*- coding: utf-8 -*-
 
 ############################ INIT ####################################
+#Importování modulu pro práci s výstupem ve formátu JSON
+import json
 #Importování modulu pro práci s objekty spravovanými interpretem
 import sys
 #Vytvoření proměnné s kódem wikiprojektu
@@ -26,24 +28,37 @@ with cur:
 	data = cur.fetchall()
 
 
-###################### PARSOVÁNÍ DAT ###############################
+###################### TŘÍDĚNÍ DAT ###############################
 
+#Vytovření proměnné pro roztříděná data
 for_analyze = []
+#´Vytvoření pomocných proměnných
 prevs = []
 prev_article = u"wqshnhaAQJHADKJHFGUIA"
 for row in data:
+	#Je název článku shodný s předchozím?
 	if row[10] == prev_article:
+		#Přidej ho do pomocné proměnné
 		prevs.append(row)
 	else:
+		#Přidej do roztříděných dat tento a předchozí. 
 		prevs.append(row)
 		for_analyze.append(prevs)
+		#Vyprázdni předchozí
 		prevs = []
+	#Aktualizuj předchozí název článku
 	prev_article = row[10]
 
+#Smazání nepotřebných pomocných proměnných
+del(prev_article)
+del(prevs)
+#Vytvoření pomocných proměnných
 saved = 0
 ended = 0
 edited = 0
 together = 0
+
+################### ANALYZOVÁNÍ DAT ########################
 
 for group in for_analyze:
 	if len(group) == 1:
@@ -81,7 +96,10 @@ for group in for_analyze:
 		saved += 1
 		together += 1
 
-print "Saved: " + str(saved)
-print "Ended: " + str(ended)
-print "Edited: " + str(edited)
-print "Together: " + str(together)
+#Vytištění výsledků na výstup
+result = {}
+result['saved'] = saved
+result['ended'] = ended
+result['edited'] = edited
+result['together'] = together
+print json
