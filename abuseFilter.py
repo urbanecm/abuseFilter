@@ -30,7 +30,7 @@ with cur:
 
 for_analyze = []
 prevs = []
-prev_article = u""
+prev_article = u"wqshnhaAQJHADKJHFGUIA"
 for row in data:
 	if row[10] == prev_article:
 		prevs.append(row)
@@ -38,7 +38,6 @@ for row in data:
 		prevs.append(row)
 		for_analyze.append(prevs)
 		prevs = []
-		prevs.append(row)
 	prev_article = row[10]
 
 saved = 0
@@ -51,17 +50,24 @@ for group in for_analyze:
 		if group[0][6] == "warn":
 			cur = conn.cursor()
 			with cur:
-				cur.execute('select * from revision where rev_page=(select page_id from page where page_title="' + group[0][10] + '" order by rev_timestamp asc')
+				cur.execute('select page_id from page where page_title="' + group[0][10] + '"')
 				data = cur.fetchall()
-			stamp = group[0][8]
 			rev_near = []
-			for rev in data:
-				if rev[6] < stamp:
-					continue
-				elif rev[6] > stamp+15:
-					break
-				else:
-					rev_near.append(rev)
+			if len(data) == 0:
+				rev_near = []
+			else:
+				cur = conn.cursor()
+				with cur:
+					cur.execute('select * from revision where rev_page=(select page_id from page where page_namespace=0 and page_title="' + group[0][10] + '" limit 1) order by rev_timestamp asc')
+					data = cur.fetchall()
+				stamp = int(group[0][8])
+				for rev in data:
+					if rev[6] < stamp:
+						continue
+					elif rev[6] > stamp+15:
+						break
+					else:
+						rev_near.append(rev)
 			if len(rev_near) == 0:
 				ended += 1
 				together += 1
