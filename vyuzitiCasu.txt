@@ -1,0 +1,7 @@
+Získání dat o filtru z db
+
+real    0m8.584s
+user    0m0.140s
+sys     0m0.140s
+
+
