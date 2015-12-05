@@ -19,7 +19,6 @@ conn = db.connect(wikisite)
 
 ######################### ZÍSKÁVÁNÍ DAT ###############################
 
-"""
 #Vytvoření databázové transakce
 cur = conn.cursor()
 #Otevření transakce
@@ -27,7 +26,6 @@ with cur:
 	#Nalezení ĺogu pro daný filtr
 	cur.execute('select * from abuse_filter_log where afl_filter="' + str(fnum) + '"order by afl_timestamp asc')
 	data = cur.fetchall()
-"""
 
 ###################### TŘÍDĚNÍ DAT ###############################
 
@@ -53,6 +51,10 @@ for row in data:
 #Smazání nepotřebných pomocných proměnných
 del(prev_article)
 del(prevs)
+
+r_file = open('result.json', 'w')
+import json
+r_file.write(json.dumps(for_analyze))
 
 """
 #Vytvoření pomocných proměnných
