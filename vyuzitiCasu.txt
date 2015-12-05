@@ -1,7 +1,13 @@
 Získání dat o filtru z db
-
 real    0m8.584s
 user    0m0.140s
 sys     0m0.140s
 
 
+Parsování dat
+real    0m1.450s
+user    0m0.380s
+sys     0m0.168s
+
+
+Analýza dat
