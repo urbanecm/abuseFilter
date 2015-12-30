@@ -3,3 +3,4 @@ result.json
 public/index.html
 *.out
 *.err
+sql.sql
