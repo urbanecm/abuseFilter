@@ -1,3 +1,4 @@
 #!/bin/bash
 
-php ~/abuseFilter/public/process.php > ~/abuseFilter/public/index.html
+become urbanecmbot bash abuseFilter/update_t.sh
+~/urbanecmbot/abuseFilter/update_p.sh
