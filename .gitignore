@@ -3,3 +3,4 @@
 *.out
 *.err
 *.bak
+public/index.html
