@@ -1,6 +1,5 @@
 *.pyc
-result.json
-public/index.html
+*.json
 *.out
 *.err
 *.bak
