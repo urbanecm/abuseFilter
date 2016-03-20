@@ -37,7 +37,7 @@ prevs = []
 prev_article = u"wqshnhaAQJHADKJHFGUIA"
 for row in data:
 	#Je název článku shodný s předchozím?
-	if row[11] == prev_article:
+	if row[10] == prev_article:
 		#Přidej ho do pomocné proměnné
 		prevs.append(row)
 	else:
@@ -47,7 +47,7 @@ for row in data:
 		#Vyprázdni předchozí
 		prevs = []
 	#Aktualizuj předchozí název článku
-	prev_article = row[11]
+	prev_article = row[10]
 
 #Smazání nepotřebných pomocných proměnných
 del(prev_article)
