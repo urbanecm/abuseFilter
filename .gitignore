@@ -4,3 +4,4 @@
 *.err
 *.bak
 public/index.html
+out.html
