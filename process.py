@@ -33,6 +33,7 @@ data = json.loads(f.read())
 
 res = []
 res.append('["Ukončeno", ' + str(data['ended']) + '],')
+res.append('["Stránka smazána"' + str(data['pageDeleted']) + '],')
 res.append('["Uloženo", ' + str(data['saved']) + '],')
 res.append('["Upraveno", ' + str(data['edited']) + ']')
 for i in res:
