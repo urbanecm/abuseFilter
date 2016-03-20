@@ -70,8 +70,11 @@ for group in for_analyze:
 				data = cur.fetchall()
 			rev_near = []
 			if len(data) == 0:
-				rev_near = []
+				#Jestliže byla stránka smazána, nastav tak rev_near
+				rev_near = [["DeletedPage"]]
 			else:
+				#Pokud ne, zjisti, zda kolem spuštění filtru proběhla nějaká editace
+				#TODO: Opravit detekci přetečení timestamp
 				cur = conn.cursor()
 				with cur:
 					cur.execute('select * from revision where rev_page=(select page_id from page where page_namespace=0 and page_title="' + group[0][10] + '" limit 1) order by rev_timestamp asc')
@@ -84,16 +87,25 @@ for group in for_analyze:
 						break
 					else:
 						rev_near.append(rev)
+			#JEstliže žádná editace kolem spuštění neproběhla, editra varování zastrašilo
 			if len(rev_near) == 0:
 				ended += 1
 				together += 1
 			else:
-				edited += 1
-				together += 1
+				#Jestli ne, zjisti, zda nebyla stránka smazána
+				if rev_near[0][0] == "DeletedPage":
+					#Polid ano, zvyš počitadlo
+					pageDeleted += 1
+				else:
+					#Pokud ne, editr editaci upravil, aby prošla filtrem
+					edited += 1
+					together += 1
 		else:
+			#Pokud se nejednalo hned o varování, musela být editace uložena
 			saved += 1
 			together += 1
 	else:
+		#Pokud se k jedné stránce vztahuje více logů, musela být editace uložena
 		saved += 1
 		together += 1
 
