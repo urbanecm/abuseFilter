@@ -53,6 +53,7 @@ for row in data:
 del(prev_article)
 del(prevs)
 #Vytvoření pomocných proměnných
+pageDeleted = 0
 saved = 0
 ended = 0
 edited = 0
