@@ -114,5 +114,6 @@ result = {}
 result['saved'] = saved
 result['ended'] = ended
 result['edited'] = edited
+result['pageDeleted'] = pageDeleted
 result['together'] = together
 print json.dumps(result)
