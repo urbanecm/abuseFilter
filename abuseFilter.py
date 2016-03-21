@@ -96,6 +96,7 @@ for group in for_analyze:
 				if rev_near[0][0] == "DeletedPage":
 					#Polid ano, zvyš počitadlo
 					pageDeleted += 1
+					together += 1
 				else:
 					#Pokud ne, editr editaci upravil, aby prošla filtrem
 					edited += 1
