@@ -1,6 +1,9 @@
 #!/usr/bin/env python
 #-*- coding: utf-8 -*-
 
+#############################################################
+#TODO: Zajistit, aby program pracoval i se smazanými revizemi (z tabulky archive)
+
 ############################ INIT ####################################
 #Importování modulu pro práci s výstupem ve formátu JSON
 import json
