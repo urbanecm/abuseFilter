@@ -118,6 +118,6 @@ result['ended'] = ended
 result['edited'] = edited
 result['pageDeleted'] = pageDeleted
 result['together'] = together
-o_f = open('resuůt.json', 'w')
+o_f = open('result.json', 'w')
 o_f.write(json.dumps(result))
 print json.dumps(result)
