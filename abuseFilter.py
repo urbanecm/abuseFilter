@@ -126,14 +126,14 @@ for group in for_analyze:
 						rev_near.append(rev)
 					else:
 						break
-		#JEstliže žádná editace kolem spuštění neproběhla, editra varování zastrašilo
+		#Jestliže žádná editace kolem spuštění neproběhla, editra varování zastrašilo
 			if len(rev_near) == 0:
 				ended += 1
 				together += 1
 			else:
 				#Jestli ne, zjisti, zda nebyla stránka smazána
 				if rev_near[0][0] == "DeletedPage":
-					#Polid ano, zvyš počitadlo
+					#Pokud ano, zvyš počitadlo
 					pageDeleted += 1
 					together += 1
 				else:
