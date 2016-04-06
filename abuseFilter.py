@@ -5,18 +5,23 @@
 #TODO: Zajistit, aby program pracoval i se smazanými revizemi (z tabulky archive)
 
 ############################ INIT ####################################
+#Importování modulů
 #Importování modulu pro práci s výstupem ve formátu JSON
 import json
 #Importování modulu pro práci s objekty spravovanými interpretem
 import sys
+#Importování knihovny pro práci s databází
+from wmflabs import db
+#Importování modulu pro práci s datem a časem
+import datetime
+
+#Init modulů
 #Vytvoření proměnné s kódem wikiprojektu
 #wikisite = sys.argv[1] + "wiki"
 wikisite = "cswiki"
 #Vytvoření proměnné s číslem filtru
 #fnum = sys.argv[2]
 fnum = 15
-#Importování knihovny pro práci s databází
-from wmflabs import db
 #Navázání připojení s databází
 conn = db.connect(wikisite)
 
