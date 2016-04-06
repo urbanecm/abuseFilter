@@ -82,7 +82,6 @@ for group in for_analyze:
 				rev_near = [["DeletedPage"]]
 			else:
 				#Pokud ne, zjisti, zda kolem spuštění filtru proběhla nějaká editace
-				#TODO: Opravit detekci přetečení timestamp
 				cur = conn.cursor()
 				with cur:
 					cur.execute('select * from revision where rev_page=(select page_id from page where page_namespace=0 and page_title="' + group[0][10] + '" limit 1) order by rev_timestamp asc')
