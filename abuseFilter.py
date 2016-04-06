@@ -87,15 +87,46 @@ for group in for_analyze:
 				with cur:
 					cur.execute('select * from revision where rev_page=(select page_id from page where page_namespace=0 and page_title="' + group[0][10] + '" limit 1) order by rev_timestamp asc')
 					data = cur.fetchall()
-				stamp = int(group[0][8])
+				#Převést na datetime objekt
+				stamp = group[0][8]
+				stampDt = datetime.datetime.strptime(stamp,'%Y%m%d%H%M%S')
+				stamp = stampDt
+				del(stampDt)
 				for rev in data:
-					if rev[6] < stamp:
+					#Převést data v tabulce na datetime objekt
+					stamp2 = datetime.datetime.strptime(rev[6], '%Y%m%d%H%M%S')
+					#Hledáme blízké revize, dokud je timestamp menší, přeskakuj
+					if stamp2.year < stamp.year:
 						continue
-					elif rev[6] > stamp+15:
-						break
-					else:
+					elif stamp2.month < stamp.month:
+						continue
+					elif stamp2.day < stamp.day:
+						continue
+					elif stamp2.hour < stamp.hour:
+						continue
+					elif stamp2.minute < stamp.minute:
+						continue
+					elif stamp2.second < stamp.second:
+						continue
+					#Dorazili jsme na alespoň stejně datovanou revizi
+					#Přičti k timestamp u abuseFilteru 15 sekund
+					stampA = stamp + datetime.timedelta(0, 15)
+					#Jakmile najdeme mladší revizi, přidejme ji do proměnné, pokud je starší, stopni cyklus
+					if stamp2.year < stampA.year:
 						rev_near.append(rev)
-			#JEstliže žádná editace kolem spuštění neproběhla, editra varování zastrašilo
+					elif stamp2.month < stampA.month:
+						rev_near.append(rev)
+					elif stamp2.day < stampA.day:
+						rev_near.append(rev)
+					elif stamp2.hour < stampA.hour:
+						rev_near.append(rev)
+					elif stamp2.minute < stampA.minute:
+						rev_near.append(rev)
+					elif stamp2.second < stampA.second:
+						rev_near.append(rev)
+					else:
+						break
+		#JEstliže žádná editace kolem spuštění neproběhla, editra varování zastrašilo
 			if len(rev_near) == 0:
 				ended += 1
 				together += 1
