@@ -141,7 +141,6 @@ for group in for_analyze:
 					together += 1
 		else:
 			#Pokud se nejednalo hned o varování, musela být editace uložena
-			#TODO: Nebo se mohlo jednat o další varování, zkontrolovat
 			saved += 1
 			together += 1
 	else:
